@@ -3,18 +3,21 @@ include('getData.php');
 include('simple_html_dom.php'); 
 	$table = "data";
 	$dateParam = "date";
-	$idParam= "gismeteo_pogoda";
+	$idParam= "forex_cb";
 	
 class main extends getData{	
  public function parseValue()
  {
-	$gismeteo = file_get_html('http://www.gismeteo.ru/city/daily/4690/'); 	
+	$forex = file_get_html('http://www.forexpf.ru'); 
+	$parseText = $forex->find('tr.curs')[0]->find('td')[2]->innertext;
+	$parseValue =  $forex->find('tr.curs')[1]->find('td')[2]->innertext;
 	
-	$parseValue =  $gismeteo->find('dd.value')[0]->innertext;
-	return "<b>".$parseValue."</b>";
+	return "<td>USD/RUB ЦБ $parseText </td><td><b> 
+	$parseValue </b></td>";
  }
 }
 
 $main = new main();
 echo $main -> getDataById($main -> getParam($table, $dateParam, $idParam), $idParam, $table);
+
 ?>

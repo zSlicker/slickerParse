@@ -1,6 +1,4 @@
 ﻿<?php
-include('simple_html_dom.php');  
-
 echo "<body bgcolor>";
 
 	echo '
@@ -53,17 +51,26 @@ echo "<body bgcolor>";
 		  }
 		});
 		
-		//forex
+		//forex_cb
 		$.ajax({
 		  type: "POST",
-		  url: "forex.php",
+		  url: "forex_cb.php",
 		  success: function(data) {
-					 $("#forex").html(data).hide().fadeToggle( "slow", "linear" );
+					 $("#forex_cb").html(data).hide().fadeToggle( "slow", "linear" );
+		  }
+		});
+		
+		//forex_torg
+		$.ajax({
+		  type: "POST",
+		  url: "forex_torg.php",
+		  success: function(data) {
+					 $("#forex_torg").html(data).hide().fadeToggle( "slow", "linear" );
 		  }
 		});
 		}
-		
-		 var refreshInterval = setInterval(refresh, 10000);
+		refresh();
+		 var refreshInterval = setInterval(refresh, 300000);
 	</script>
 	
 	<style>
@@ -84,8 +91,8 @@ echo "</table>";
 
 echo "</br></br>Курс доллара:</br></br>";
 
-echo "<table><tr id=forex><td><b>Загрузка..</b></td></tr>";
-
+echo "<table><tr id=forex_cb><td><b>Загрузка..</b></td></tr>";
+echo "<tr id=forex_torg><td><b>Загрузка..</b></td></tr>";
 echo "<tr id=yandexmmvb><td><b>Загрузка..</b></td></tr>";
 
 echo "</table>";
