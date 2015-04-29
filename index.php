@@ -70,7 +70,7 @@ echo "<body bgcolor>";
 		});
 		}
 		refresh();
-		 var refreshInterval = setInterval(refresh, 300000);
+		 var refreshInterval = setInterval(refresh, 30000);
 	</script>
 	
 	<style>

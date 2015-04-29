@@ -5,7 +5,9 @@ class getData{
  public function updateValueById($table, $idparam, $value)
  {
 	include('connect.php');
-	$sql = "update `".$table."` set value='".$value."',date=NOW() where id='".$idparam."'";
+	$Now = new DateTime("now");
+	$Now = $Now->format('Y-m-d H:i:s'); 
+	$sql = "update `".$table."` set value='".$value."',date='".$Now."' where id='".$idparam."'";
 	$conn->query($sql);
  }
 
@@ -23,7 +25,7 @@ class getData{
  public function getDataById($dateParse, $idparam, $table)
  {                                                    
 	$dateNow = new DateTime("now");
-	$dateNow -> modify('-5 minute'); 
+	$dateNow -> modify('-1 minute'); 
 	$dateNow = $dateNow->format('Y-m-d H:i:s'); 
 		
 	if($dateParse < $dateNow)
